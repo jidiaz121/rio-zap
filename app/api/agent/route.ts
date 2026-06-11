@@ -28,12 +28,35 @@ const contract = (name: string) => {
   return c;
 };
 
+// Haiku occasionally drifts to PT on EN questions about PT-named things
+// (bairros, categorias). Detect the last user message's language server-side
+// and pin it in the runtime context — deterministic, prompt text untouched.
+function lastUserLanguage(messages: UIMessage[]): "Brazilian Portuguese" | "English" {
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const m = messages[i];
+    if (m.role !== "user") continue;
+    const text = m.parts
+      .filter((p): p is { type: "text"; text: string } => p.type === "text")
+      .map((p) => p.text)
+      .join(" ");
+    const isPt =
+      /[ãõçáàâêéíóôú]|\b(cade|cadê|tá|onde|vai|hoje|como|chove|chover|ônibus|onibus|reclama|aqui|agora|qual|quanto|está|esta|tempo|praia)\b/i.test(
+        text,
+      );
+    return isPt ? "Brazilian Portuguese" : "English";
+  }
+  return "English";
+}
+
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
     model: pickModel(),
-    system: SYSTEM_PROMPT + runtimeContext(),
+    system:
+      SYSTEM_PROMPT +
+      runtimeContext() +
+      `\nLANGUAGE CHECK: the user's last message is in ${lastUserLanguage(messages)}. Your entire reply must be in ${lastUserLanguage(messages)}.`,
     messages: await convertToModelMessages(messages),
     stopWhen: stepCountIs(4), // max 2 tool calls + final answer
     tools: {

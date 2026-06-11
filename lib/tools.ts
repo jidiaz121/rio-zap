@@ -110,6 +110,8 @@ function busFromSnapshot(linha: string): ToolResult {
   return {
     source: "snapshot",
     recorded_at: snap.recorded_at ?? "earlier today",
+    notice:
+      "SNAPSHOT, NOT LIVE: positions recorded earlier today. You MUST tell the user this is from earlier today, not live.",
     linha: digitsOnly(linha),
     ...result,
   };
@@ -208,7 +210,12 @@ export async function getDengue(): Promise<ToolResult> {
     return { ...result, elapsed_ms: Date.now() - started };
   } catch {
     const snap = shapeDengue(dengueSnapshot as unknown as DengueWeek[], "snapshot");
-    return { ...snap, elapsed_ms: Date.now() - started };
+    return {
+      ...snap,
+      notice:
+        "SNAPSHOT, NOT LIVE: recorded earlier today. You MUST tell the user this is from earlier today, not live.",
+      elapsed_ms: Date.now() - started,
+    };
   }
 }
 
@@ -277,7 +284,12 @@ export async function getWeather(): Promise<ToolResult> {
     return { ...result, elapsed_ms: Date.now() - started };
   } catch {
     const snap = shapeWeather(weatherSnapshot as unknown as OpenMeteoResponse, "snapshot");
-    return { ...snap, elapsed_ms: Date.now() - started };
+    return {
+      ...snap,
+      notice:
+        "SNAPSHOT, NOT LIVE: recorded earlier today. You MUST tell the user this is from earlier today, not live.",
+      elapsed_ms: Date.now() - started,
+    };
   }
 }
 
