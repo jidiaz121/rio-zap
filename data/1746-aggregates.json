@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-06-11",
+  "window": "2024-2025, as officially reported",
+  "method": "BigQuery datario access unavailable on build day. Aggregated from official Prefeitura Rio publications and 1746 data presented at Camara Municipal hearings as reported by Diario do Rio. Per-bairro raw counts require BigQuery and are deliberately NOT included rather than estimated.",
+  "sources": [
+    "https://diariodorio.com/perturbacao-do-sossego-dispara-no-rio-1746-ja-soma-mais-de-19-mil-chamados-em-2025/",
+    "https://diariodorio.com/prefeitura-registra-mais-de-31-mil-reclamacoes-sobre-calcadas-do-rio-em-2-anos",
+    "https://prefeitura.rio/cidade/central-1746-comemora-dez-anos-a-servico-dos-cariocas/"
+  ],
+  "citywide": {
+    "total_atendimentos_since_2011": 15000000,
+    "services_available": 1500,
+    "top_categorias": [
+      {
+        "categoria": "Perturbação do sossego (noise)",
+        "total_2024": 9000,
+        "total_2025": 19000,
+        "window": "2024 vs 2025 (through November)",
+        "note": "more than doubled year over year, per 1746 data presented at Camara Municipal"
+      },
+      {
+        "categoria": "Calçadas (sidewalk complaints)",
+        "total": 31000,
+        "window": "July 2023 - August 2025",
+        "note": "citywide total over roughly two years"
+      }
+    ]
+  },
+  "bairros": {
+    "copacabana": {
+      "nome": "Copacabana",
+      "rankings": [
+        { "categoria": "Perturbação do sossego (noise)", "fact": "top-5 neighborhood citywide in 2025" },
+        { "categoria": "Calçadas (sidewalks)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    },
+    "botafogo": {
+      "nome": "Botafogo",
+      "rankings": [
+        { "categoria": "Perturbação do sossego (noise)", "fact": "leads the citywide ranking in 2025" }
+      ]
+    },
+    "leblon": {
+      "nome": "Leblon",
+      "rankings": [
+        { "categoria": "Perturbação do sossego (noise)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    },
+    "barra-da-tijuca": {
+      "nome": "Barra da Tijuca",
+      "rankings": [
+        { "categoria": "Perturbação do sossego (noise)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    },
+    "camorim": {
+      "nome": "Camorim",
+      "rankings": [
+        { "categoria": "Perturbação do sossego (noise)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    },
+    "tijuca": {
+      "nome": "Tijuca",
+      "rankings": [
+        { "categoria": "Calçadas (sidewalks)", "fact": "leads the citywide ranking in 2025" }
+      ]
+    },
+    "centro": {
+      "nome": "Centro",
+      "rankings": [
+        { "categoria": "Calçadas (sidewalks)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    },
+    "campo-grande": {
+      "nome": "Campo Grande",
+      "rankings": [
+        { "categoria": "Calçadas (sidewalks)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    },
+    "madureira": {
+      "nome": "Madureira",
+      "rankings": [
+        { "categoria": "Calçadas (sidewalks)", "fact": "top-5 neighborhood citywide in 2025" }
+      ]
+    }
+  }
+}
