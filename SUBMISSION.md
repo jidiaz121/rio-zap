@@ -1,6 +1,6 @@
 # Devpost submission draft — Rio Zap
 
-**Live URL: https://zap-da-cidade.vercel.app**
+**Live URL: https://rio-zap.vercel.app** · Repo: https://github.com/jidiaz121/rio-zap
 
 > Paste-ready answers. Numbers verified against INAF 2024 and live tool responses on build day.
 
