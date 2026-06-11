@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0e14;
+  --background: #07111a; /* deep Guanabara-night blue */
   --foreground: #f4f4f5;
+  --brasil-green: #00a85a;
+  --brasil-yellow: #fedd00;
+  --brasil-blue: #3b82f6;
 }
 
 @theme inline {
@@ -44,13 +47,13 @@ body {
   0%,
   100% {
     box-shadow:
-      0 0 0 0 rgba(252, 211, 77, 0.35),
-      0 8px 32px rgba(252, 211, 77, 0.25);
+      0 0 0 0 rgba(254, 221, 0, 0.35),
+      0 8px 32px rgba(254, 221, 0, 0.22);
   }
   50% {
     box-shadow:
-      0 0 0 16px rgba(252, 211, 77, 0),
-      0 8px 40px rgba(252, 211, 77, 0.35);
+      0 0 0 16px rgba(0, 168, 90, 0),
+      0 8px 40px rgba(0, 168, 90, 0.3);
   }
 }
 .mic-recording {
@@ -81,7 +84,7 @@ body {
   }
 }
 
-/* hero glow behind empty state */
+/* hero glow behind empty state — Rio dusk: yellow over green */
 .hero-glow {
   position: absolute;
   top: 18%;
@@ -89,8 +92,34 @@ body {
   width: 420px;
   height: 420px;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(252, 211, 77, 0.07) 0%, transparent 65%);
+  background:
+    radial-gradient(circle at 40% 35%, rgba(254, 221, 0, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 65% 65%, rgba(0, 168, 90, 0.07) 0%, transparent 60%);
   pointer-events: none;
+}
+
+/* Brazil tri-stripe under the header */
+.flag-stripe {
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    var(--brasil-green) 0%,
+    var(--brasil-green) 33%,
+    var(--brasil-yellow) 33%,
+    var(--brasil-yellow) 67%,
+    var(--brasil-blue) 67%,
+    var(--brasil-blue) 100%
+  );
+  opacity: 0.85;
+}
+
+/* horizontal chip rail on mobile */
+.chip-rail {
+  scrollbar-width: none;
+}
+.chip-rail::-webkit-scrollbar {
+  display: none;
 }
 
 /* bus markers on the minimap */

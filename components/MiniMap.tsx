@@ -85,7 +85,7 @@ export default function MiniMap({ positions }: { positions: BusPosition[] }) {
 
   return (
     <div className="card-in mt-2 overflow-hidden rounded-xl border border-white/10">
-      <div ref={containerRef} className="h-56 w-full bg-[#10151c]" />
+      <div ref={containerRef} className="h-44 w-full bg-[#10151c] sm:h-56" />
       <div className="flex items-center justify-between bg-white/[0.03] px-3 py-1.5 text-[11px] text-zinc-500">
         <span>{positions.length} live positions · SPPO fleet GPS</span>
         <span>© CARTO © OSM</span>

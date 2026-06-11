@@ -1,6 +1,8 @@
 # Devpost submission draft — Zap da Cidade
 
-> Paste-ready answers. Numbers verified against INAF 2024 and live tool responses on build day. Fill `{URL}` after deploy.
+**Live URL: https://zap-da-cidade.vercel.app**
+
+> Paste-ready answers. Numbers verified against INAF 2024 and live tool responses on build day.
 
 ## Inspiration
 

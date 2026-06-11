@@ -307,32 +307,35 @@ export default function Home() {
         </div>
       )}
 
-      <header className="flex items-center justify-between pb-2 pt-5">
-        <div>
-          <h1 className="text-lg font-bold tracking-tight text-zinc-100">
-            Zap <span className="text-amber-300">da Cidade</span>
-          </h1>
-          <p className="text-[12px] text-zinc-500">Fala com a tua cidade. Talk to your city.</p>
+      <header className="pt-4 sm:pt-5">
+        <div className="flex items-center justify-between pb-2">
+          <div>
+            <h1 className="text-lg font-bold tracking-tight text-zinc-100">
+              Zap <span className="text-[#fedd00]">da Cidade</span>
+            </h1>
+            <p className="text-[12px] text-zinc-500">Fala com a tua cidade. Talk to your city.</p>
+          </div>
+          <button
+            onClick={() => {
+              setSteeringOpen(true);
+              setSteeringSeen(true);
+            }}
+            className={`shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-[12px] text-zinc-400 transition hover:border-amber-300/40 hover:text-amber-200 ${
+              hasAnswered && !steeringSeen ? "pulse-once" : ""
+            }`}
+          >
+            How Zap is steered
+          </button>
         </div>
-        <button
-          onClick={() => {
-            setSteeringOpen(true);
-            setSteeringSeen(true);
-          }}
-          className={`rounded-full border border-white/10 px-3 py-1.5 text-[12px] text-zinc-400 transition hover:border-amber-300/40 hover:text-amber-200 ${
-            hasAnswered && !steeringSeen ? "pulse-once" : ""
-          }`}
-        >
-          How Zap is steered
-        </button>
+        <div className="flag-stripe" aria-hidden />
       </header>
 
       <section className="flex-1 overflow-y-auto py-4">
         {messages.length === 0 ? (
           <div className="flex h-full flex-col items-center justify-center gap-3 pb-10 pt-16 text-center">
             <div className="hero-glow" aria-hidden />
-            <h2 className="max-w-md text-3xl font-bold leading-tight tracking-tight text-zinc-100">
-              Ask Rio anything, <span className="text-amber-300">out loud</span>.
+            <h2 className="max-w-md text-2xl font-bold leading-tight tracking-tight text-zinc-100 sm:text-3xl">
+              Ask Rio anything, <span className="text-[#fedd00]">out loud</span>.
             </h2>
             <p className="max-w-sm text-[14px] leading-relaxed text-zinc-400">
               Buses, dengue, complaints, weather — live city data, answered by voice in Portuguese
@@ -383,9 +386,9 @@ export default function Home() {
                 setSuggestionUsed(true);
                 handleSend(suggestion.label);
               }}
-              className="card-in flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/10 px-4 py-2 text-[13px] font-medium text-amber-200 transition hover:bg-amber-300/20"
+              className="card-in flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-4 py-2 text-[13px] font-medium text-emerald-200 transition hover:bg-emerald-400/20"
             >
-              <span className="text-[10px] uppercase tracking-wider text-amber-300/70">
+              <span className="text-[10px] uppercase tracking-wider text-emerald-300/70">
                 {suggestion.hint}
               </span>
               {suggestion.label}
@@ -393,13 +396,13 @@ export default function Home() {
           </div>
         )}
 
-        <div className="mb-3 flex flex-wrap justify-center gap-1.5">
+        <div className="chip-rail -mx-4 mb-3 flex gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
           {CHIPS.map((c) => (
             <button
               key={c.label}
               onClick={() => handleSend(c.label)}
               disabled={busy}
-              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12.5px] text-zinc-300 transition hover:border-white/25 hover:bg-white/[0.08] disabled:opacity-40"
+              className="shrink-0 whitespace-nowrap rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[12.5px] text-zinc-300 transition hover:border-white/25 hover:bg-white/[0.08] disabled:opacity-40"
             >
               {c.label}
             </button>
@@ -411,10 +414,10 @@ export default function Home() {
             onClick={toggleMic}
             disabled={busy || micState === "transcribing"}
             aria-label={micState === "recording" ? "Stop recording" : "Start talking"}
-            className={`relative flex h-20 w-20 items-center justify-center rounded-full transition-transform active:scale-95 ${
+            className={`relative flex h-16 w-16 items-center justify-center rounded-full transition-transform active:scale-95 sm:h-20 sm:w-20 ${
               micState === "recording"
                 ? "mic-recording bg-rose-500"
-                : "mic-idle bg-gradient-to-b from-amber-300 to-amber-400"
+                : "mic-idle bg-gradient-to-b from-[#fedd00] to-amber-400"
             } ${busy || micState === "transcribing" ? "opacity-60" : ""}`}
           >
             {micState === "transcribing" ? (
@@ -422,7 +425,7 @@ export default function Home() {
             ) : (
               <svg
                 viewBox="0 0 24 24"
-                className="h-8 w-8 text-zinc-900"
+                className="h-7 w-7 text-zinc-900 sm:h-8 sm:w-8"
                 fill="currentColor"
                 aria-hidden
               >
