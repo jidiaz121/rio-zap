@@ -233,12 +233,14 @@ export default function Home() {
           setMicNote("Did not catch that — try again, type, or tap a chip.");
         }
       } catch {
+        // Flip the session flag and keep listening in the SAME interaction —
+        // a second tap reads as broken to a 90-second judge.
         sttDown.current = true;
-        setMicState("idle");
-        setMicNote("Switched to on-device speech recognition. Tap the mic again.");
+        setMicNote("On-device listening — speak now");
+        startWebSpeech();
       }
     },
-    [handleSend],
+    [handleSend, startWebSpeech],
   );
 
   const startRecording = useCallback(async () => {
