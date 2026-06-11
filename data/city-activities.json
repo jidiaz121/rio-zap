@@ -1,1 +1,205 @@
-{"as_of": null, "method": null, "sources": [], "activities": []}
+{
+  "as_of": "2026-06-11",
+  "method": "curl against PCRJ's official ArcGIS org (field domains of SMEL's 'Ficha de Inscricao - Vilas Olimpicas' FeatureServer) for the 21-venue list and official modality list, plus the official carioca.rio service page for program description and publico",
+  "sources": [
+    "https://services1.arcgis.com/OlP4dGNtIcnD3RYf/arcgis/rest/services/service_6df294e28708441187a1b1381f931155/FeatureServer/0?f=json",
+    "https://carioca.rio/servicos/informacoes-sobre-atividades-esportivas-gratuitas/",
+    "https://services1.arcgis.com/OlP4dGNtIcnD3RYf/arcgis/rest/services/VilaOlimpica/FeatureServer/0/query?where=1%3D1&outFields=*&f=json",
+    "https://pgeo3.rio.rj.gov.br/arcgis/rest/services?f=json"
+  ],
+  "activities": [
+    {
+      "nome": "Programa Vilas Olímpicas (modalidades oficiais da ficha de inscrição SMEL)",
+      "tipo": "programa_esportivo",
+      "bairro": null,
+      "endereco": null,
+      "atividades": [
+        "futebol de campo",
+        "iniciação esportiva (futsal, basquete, atletismo, voleibol)",
+        "natação",
+        "handebol",
+        "karatê",
+        "tae kwon do",
+        "vôlei de praia",
+        "patinação artística",
+        "baby class",
+        "sapateado",
+        "zumba",
+        "yoga",
+        "xadrez gigante",
+        "academia carioca",
+        "dança adaptada",
+        "ginástica adaptada"
+      ],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência; matrícula gratuita feita diretamente na vila olímpica"
+    },
+    {
+      "nome": "Vila Olímpica da Gamboa",
+      "tipo": "vila_olimpica",
+      "bairro": "Gamboa",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Parque Machado de Assis",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Nilton Santos",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica do Vidigal",
+      "tipo": "vila_olimpica",
+      "bairro": "Vidigal",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica do Encantado",
+      "tipo": "vila_olimpica",
+      "bairro": "Encantado",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "CIAD (Centro Integrado de Atenção à Pessoa com Deficiência)",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos", "dança adaptada", "ginástica adaptada"],
+      "publico": "pessoas com deficiência"
+    },
+    {
+      "nome": "GREIP - Penha",
+      "tipo": "vila_olimpica",
+      "bairro": "Penha",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Dr. Sócrates Brasileiro",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica da Mangueira",
+      "tipo": "vila_olimpica",
+      "bairro": "Mangueira",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Mané Garrincha",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Artur da Távola",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Professor Manoel José Gomes Tubino",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Vizinhanças de Ramos",
+      "tipo": "vila_olimpica",
+      "bairro": "Ramos",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Vizinhanças Dias Gomes",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Oscar Schmidt",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Clara Nunes",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Jornalista Ary de Carvalho",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Carlos Castilho",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Mestre André",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica da Maré",
+      "tipo": "vila_olimpica",
+      "bairro": "Maré",
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    },
+    {
+      "nome": "Vila Olímpica Miécimo da Silva",
+      "tipo": "vila_olimpica",
+      "bairro": null,
+      "endereco": null,
+      "atividades": ["esportes diversos"],
+      "publico": "qualquer cidadão, inclusive pessoas com deficiência"
+    }
+  ]
+}

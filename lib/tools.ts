@@ -372,7 +372,9 @@ export async function getCityActivities(
   const exact = wantAct
     ? scored.filter((a) => a.atividades.map(slugify).some((x) => x.includes(wantAct)))
     : scored;
-  const picked = (exact.length > 0 ? exact : scored).slice(0, 6);
+  // Exact modality matches first, then general-sports venues fill the list.
+  const rest = scored.filter((a) => !exact.includes(a));
+  const picked = [...exact, ...rest].slice(0, 6);
   return {
     source: "official city open data",
     as_of: data.as_of,
