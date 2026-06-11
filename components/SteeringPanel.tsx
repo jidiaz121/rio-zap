@@ -40,7 +40,7 @@ export default function SteeringPanel({ onClose }: { onClose: () => void }) {
         </pre>
 
         <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-widest text-amber-300/90">
-          Tool contracts (4, exactly)
+          Tool contracts ({TOOL_CONTRACTS.length}, exactly)
         </h3>
         <div className="mb-6 space-y-2">
           {TOOL_CONTRACTS.map((t) => (

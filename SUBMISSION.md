@@ -10,7 +10,7 @@ Roughly 29% of Brazilian adults are functionally illiterate (INAF 2024), and 95%
 
 ## What it does
 
-One button. Speak to Rio in Portuguese or English — "Cadê o 483?" — and the city answers out loud in your language, grounded in 4 live municipal feeds (SPPO bus GPS, InfoDengue/Fiocruz, 1746 complaints, Open-Meteo). Tool-call cards animate while it thinks, showing which feed answered and how fresh the data is. Bus answers drop a live minimap. Switch language mid-conversation and Zap switches with you, no toggle. A "How Zap is steered" panel renders the actual live system prompt and tool contracts running in production.
+One button. Speak to Rio in Portuguese or English — "Cadê o 483?" or "where do I enroll my kids in football?" — and the city answers out loud in your language, grounded in 5 municipal data sources (SPPO bus GPS, InfoDengue/Fiocruz, 1746 complaints, Open-Meteo, and the city's free sports programs). Tool-call cards animate while it thinks, showing which feed answered and how fresh the data is. Bus answers drop a live minimap. Switch language mid-conversation and Zap switches with you, no toggle. A "How Zap is steered" panel renders the actual live system prompt and tool contracts running in production.
 
 ## How we built it
 
@@ -26,7 +26,7 @@ The SPPO feed tripled in size on build day (60MB+, streaming slowly) and made li
 
 ## Accomplishments
 
-A bilingual voice civic agent grounded in 4 real municipal data feeds, with transparent tool-calling and a provably-honest steering panel, working on a phone, deployed, in 3 hours. Voice survives every quota failure (browser floor), data survives every feed failure (labeled snapshots), and no number is ever invented.
+A bilingual voice civic agent grounded in 5 real municipal data sources, with transparent tool-calling and a provably-honest steering panel, working on a phone, deployed, in 3 hours. Voice survives every quota failure (browser floor), data survives every feed failure (labeled snapshots), and no number is ever invented.
 
 ## What's next
 

@@ -46,6 +46,15 @@ const TOOL_META: Record<string, { label: string; color: string; icon: React.Reac
       </svg>
     ),
   },
+  getCityActivities: {
+    label: "getCityActivities",
+    color: "text-emerald-300",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
+        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2c.9 0 1.77.15 2.58.43L12 6.5 9.42 4.43A8 8 0 0 1 12 4Zm-5.9 2.7L8.5 9l-1.6 3.1-2.83-.6a8 8 0 0 1 2.03-4.8Zm1.4 9.8 2.1-.4 1.4 2.6-1.1 2.4a8.04 8.04 0 0 1-4.1-3.5l1.7-1.1Zm6.9 4.9-1.2-2.6 1.4-2.7 2.2.4 1.6 1.2a8.04 8.04 0 0 1-4 3.7Zm3.5-7.3L16.3 9l2.4-2.3a8 8 0 0 1 2 4.9l-2.8.5ZM10.3 13l1.7-3.3 1.8 3.4-1.8 3.3-1.7-3.4Z" />
+      </svg>
+    ),
+  },
 };
 
 function summarize(name: string, output: Record<string, unknown> | undefined): string {
@@ -75,6 +84,15 @@ function summarize(name: string, output: Record<string, unknown> | undefined): s
     }
     case "getWeather":
       return `${output.temp_c}°C · ${output.condition} · rain next 3h ${output.rain_prob_next_3h_pct ?? "?"}%${src}`;
+    case "getCityActivities": {
+      const matches = output.matches as { nome: string }[] | undefined;
+      const n = output.count_total_matches as number | undefined;
+      if (!matches?.length) return "no matching city programs";
+      return `${n ?? matches.length} venue(s) · ${matches
+        .slice(0, 2)
+        .map((m) => m.nome)
+        .join(", ")}${matches.length > 2 ? "…" : ""}`;
+    }
     default:
       return JSON.stringify(output).slice(0, 120);
   }

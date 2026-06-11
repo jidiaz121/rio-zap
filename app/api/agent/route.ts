@@ -9,7 +9,13 @@ import {
 } from "ai";
 import { z } from "zod";
 import { SYSTEM_PROMPT, TOOL_CONTRACTS, runtimeContext } from "@/lib/steering";
-import { get1746Stats, getBusLive, getDengue, getWeather } from "@/lib/tools";
+import {
+  get1746Stats,
+  getBusLive,
+  getCityActivities,
+  getDengue,
+  getWeather,
+} from "@/lib/tools";
 
 export const maxDuration = 60;
 
@@ -83,6 +89,20 @@ export async function POST(req: Request) {
         description: contract("getWeather").description,
         inputSchema: z.object({}),
         execute: async () => getWeather(),
+      }),
+      getCityActivities: tool({
+        description: contract("getCityActivities").description,
+        inputSchema: z.object({
+          atividade: z
+            .string()
+            .optional()
+            .describe(contract("getCityActivities").params[0].description),
+          bairro: z
+            .string()
+            .optional()
+            .describe(contract("getCityActivities").params[1].description),
+        }),
+        execute: async ({ atividade, bairro }) => getCityActivities(atividade, bairro),
       }),
     },
   });

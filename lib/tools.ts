@@ -6,6 +6,7 @@ import dengueSnapshot from "@/data/dengue-snapshot.json";
 import weatherSnapshot from "@/data/weather-snapshot.json";
 import aggregates1746 from "@/data/1746-aggregates.json";
 import bairroNames from "@/data/bairro-names.json";
+import cityActivities from "@/data/city-activities.json";
 
 export interface ToolError {
   error: { code: string; message: string };
@@ -320,6 +321,70 @@ export function slugify(s: string): string {
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-");
+}
+
+// ------------------------------------------------- city activities & events
+
+interface CityActivity {
+  nome: string;
+  tipo: string;
+  bairro: string | null;
+  endereco: string | null;
+  atividades: string[];
+  publico: string | null;
+}
+
+interface CityActivitiesData {
+  as_of: string | null;
+  method: string | null;
+  sources: string[];
+  activities: CityActivity[];
+}
+
+export async function getCityActivities(
+  atividade?: string,
+  bairro?: string,
+): Promise<ToolResult> {
+  const started = Date.now();
+  const data = cityActivities as unknown as CityActivitiesData;
+  const all = data.activities ?? [];
+  if (all.length === 0) {
+    return {
+      ...toolError(
+        "dataset_unavailable",
+        "The city activities dataset is not loaded. Suggest the user check prefeitura.rio or a Vila Olímpica nearby.",
+      ),
+      elapsed_ms: Date.now() - started,
+    };
+  }
+  const wantAct = atividade ? slugify(atividade) : null;
+  const wantBairro = bairro ? slugify(bairro) : null;
+  const scored = all.filter((a) => {
+    if (wantBairro && !(a.bairro && slugify(a.bairro).includes(wantBairro))) return false;
+    if (!wantAct) return true;
+    const acts = a.atividades.map(slugify);
+    return (
+      acts.some((x) => x.includes(wantAct) || wantAct.includes(x)) ||
+      acts.includes("esportes-diversos") ||
+      slugify(a.nome).includes(wantAct)
+    );
+  });
+  const exact = wantAct
+    ? scored.filter((a) => a.atividades.map(slugify).some((x) => x.includes(wantAct)))
+    : scored;
+  const picked = (exact.length > 0 ? exact : scored).slice(0, 6);
+  return {
+    source: "official city open data",
+    as_of: data.as_of,
+    query: { atividade: atividade ?? null, bairro: bairro ?? null },
+    count_total_matches: scored.length,
+    matches: picked,
+    note:
+      exact.length === 0 && wantAct
+        ? "No venue lists this exact activity; these are city sports venues with general programs — tell the user to confirm the specific class with the venue."
+        : "Free city-run programs. Enrollment is at the venue.",
+    elapsed_ms: Date.now() - started,
+  };
 }
 
 export async function get1746Stats(bairro: string): Promise<ToolResult> {

@@ -16,6 +16,7 @@ TOOL SELECTION:
 - getDengue: anything about dengue, mosquitoes, epidemic, outbreak.
 - get1746Stats: complaints, "buraco", "iluminação", "lixo", noise, what a neighborhood complains about, city service quality.
 - getWeather: weather, rain, beach plans, "vai chover".
+- getCityActivities: free city sports programs and classes ("aula de futebol", "escolinha", Vila Olímpica, Areninha), activities for kids, city-run events. Pass the activity and the neighborhood if the user names one.
 - Call at most 2 tools per turn. If no tool fits, answer in persona, with zero numbers.
 
 DATA HONESTY (non-negotiable): every number you speak MUST come verbatim from a tool result in this conversation. No tool result, no number. If a tool returns an error or empty data, say plainly that the city data is offline right now and offer another question. Never estimate, never use numbers from memory. If a result says source "snapshot", say the data is from earlier today, not live.
@@ -26,7 +27,8 @@ EXAMPLES:
 User: "Cadê o 483?" -> [getBusLive linha=483] -> "Tem 12 ônibus do 483 rodando agora, o mais recente atualizou faz 40 segundos. Dá uma olhada no mapinha!"
 User: "Should I worry about dengue?" -> [getDengue] -> "Rio is at yellow alert, level 2, and transmission is actually slowing down. Keep clearing standing water and you're doing your part."
 User: "Cadê o 309?" -> [getBusLive returns count_active: 0] -> "Agora não tem nenhum 309 rodando, viu. Quer que eu olhe outra linha?"
-User: "Where is bus 415?" -> [getBusLive returns error, or source: "snapshot"] -> "The live bus feed is offline right now, so I can't see the 415. Want the dengue alert or today's weather instead?" (if snapshot: "Heads up, this is from earlier today, not live: ...")`;
+User: "Where is bus 415?" -> [getBusLive returns error, or source: "snapshot"] -> "The live bus feed is offline right now, so I can't see the 415. Want the dengue alert or today's weather instead?" (if snapshot: "Heads up, this is from earlier today, not live: ...")
+User: "Quero inscrever meus filhos numa aula de futebol, tem algo no Rio?" -> [getCityActivities atividade=futebol] -> "Tem sim! As Vilas Olímpicas da prefeitura têm escolinha de esporte de graça pra criançada, e a inscrição é na própria vila. Me fala teu bairro que eu olho a mais perto!"`;
 
 export function runtimeContext(): string {
   const rioTime = new Date().toLocaleString("pt-BR", {
@@ -88,6 +90,23 @@ export const TOOL_CONTRACTS: readonly ToolContract[] = [
       "Current weather in Rio: temperature, feels-like, rain probability for the next hours.",
     params: [],
   },
+  {
+    name: "getCityActivities",
+    description:
+      "Official free city sports programs and activities (Vilas Olímpicas, Areninhas, escolinhas): venue, neighborhood, activities offered, target audience. From the city's open data.",
+    params: [
+      {
+        name: "atividade",
+        type: "string (optional)",
+        description: 'Activity in Portuguese, e.g. "futebol", "natação". Omit to list venues.',
+      },
+      {
+        name: "bairro",
+        type: "string (optional)",
+        description: "Neighborhood name to filter by, if the user names one.",
+      },
+    ],
+  },
 ] as const;
 
 export interface DataSource {
@@ -121,5 +140,11 @@ export const DATA_SOURCES: readonly DataSource[] = [
     name: "Open-Meteo",
     url: "https://api.open-meteo.com/v1/forecast",
     freshness: "live; labeled snapshot fallback",
+  },
+  {
+    tool: "getCityActivities",
+    name: "City sports venues & programs (Prefeitura Rio open data)",
+    url: "https://www.data.rio",
+    freshness: "official dataset in repo, as-of date labeled in every response",
   },
 ] as const;

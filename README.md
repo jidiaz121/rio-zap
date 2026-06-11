@@ -2,11 +2,11 @@
 
 **Fala com a tua cidade. Talk to your city.**
 
-A big mic button. Speak to Rio de Janeiro in Portuguese or English and the city answers by voice, grounded in 4 live municipal data feeds. Built in 3 hours at Web Summit Rio 2026.
+A big mic button. Speak to Rio de Janeiro in Portuguese or English and the city answers by voice, grounded in 5 municipal data sources. Built in 3 hours at Web Summit Rio 2026.
 
 ~29% of Brazilian adults are functionally illiterate (INAF 2024) and 95% of them fail basic smartphone tasks. Every dashboard and text form excludes exactly the people public services exist for. Rio's data is already open — bus GPS, dengue alerts, 1746 complaints, weather. The interface is what excludes people. So we built only the interface: voice in, voice out, zero reading required.
 
-## The 4 tools (exactly 4)
+## The 5 tools
 
 | Tool | Source | Freshness |
 |---|---|---|
@@ -14,6 +14,7 @@ A big mic button. Speak to Rio de Janeiro in Portuguese or English and the city 
 | `getDengue()` | InfoDengue (Fiocruz) | live, 1h cache, labeled snapshot fallback |
 | `get1746Stats(bairro)` | Official 1746 publications (Prefeitura Rio, Câmara Municipal data) | static aggregate in repo, window labeled |
 | `getWeather()` | Open-Meteo | live, labeled snapshot fallback |
+| `getCityActivities(atividade?, bairro?)` | City sports venues & free programs (Prefeitura Rio open data) | official dataset in repo, as-of labeled |
 
 ## How Zap is steered (the honest part)
 
@@ -31,7 +32,7 @@ Steering decisions that matter:
 ```
 mic (MediaRecorder) -> POST /api/stt  (ElevenLabs Scribe)   [auto-fallback: Web Speech API]
 text + chips -------> POST /api/agent (AI SDK streamText, claude-haiku-4-5)
-                        |- 4 in-process tools, SSE tool events -> animated cards
+                        |- 5 in-process tools, SSE tool events -> animated cards
 reply text ---------> POST /api/tts  (ElevenLabs Flash v2.5) [auto-fallback: speechSynthesis]
 bus positions ------> MapLibre minimap (Carto dark -> OSM raster -> text-only floor)
 ```
