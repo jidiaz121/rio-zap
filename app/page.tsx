@@ -313,7 +313,7 @@ export default function Home() {
         <div className="flex items-center justify-between pb-2">
           <div>
             <h1 className="text-lg font-bold tracking-tight text-zinc-100">
-              Zap <span className="text-[#fedd00]">da Cidade</span>
+              Rio <span className="text-[#fedd00]">Zap</span>
             </h1>
             <p className="text-[12px] text-zinc-500">Fala com a tua cidade. Talk to your city.</p>
           </div>

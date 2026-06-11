@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zap da Cidade — Fala com a tua cidade",
+  title: "Rio Zap — Fala com a tua cidade",
   description:
     "Speak to Rio de Janeiro in Portuguese or English. Live buses, dengue alerts, 1746 complaints and weather — answered by voice, grounded in 4 municipal data feeds.",
 };

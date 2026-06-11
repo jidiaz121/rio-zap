@@ -1,4 +1,4 @@
-# Devpost submission draft — Zap da Cidade
+# Devpost submission draft — Rio Zap
 
 **Live URL: https://zap-da-cidade.vercel.app**
 
